@@ -1,9 +1,9 @@
 {
-  "name": "package-json-upgrade",
-  "displayName": "Package Json Upgrade",
-  "description": "Shows available updates in package.json files. Offers quick fix command to update them and to show the changelog.",
+  "name": "pubspec-yaml-upgrade",
+  "displayName": "Pubspec Yaml Upgrade",
+  "description": "Shows available updates in pubspec.yaml files. Offers quick fix command to update them and to show the changelog.",
   "version": "3.0.1",
-  "publisher": "codeandstuff",
+  "publisher": "laurence-trippen",
   "license": "MIT",
   "icon": "logo/icon.png",
   "engines": {
@@ -32,59 +32,59 @@
   "contributes": {
     "configuration": {
       "type": "object",
-      "title": "Package json upgrade",
+      "title": "Pubspec Yaml Upgrade",
       "properties": {
-        "package-json-upgrade.showUpdatesAtStart": {
+        "pubspec-yaml-upgrade.showUpdatesAtStart": {
           "type": "boolean",
           "default": true,
           "description": "Available updates will be shown directly when a package.json is opened. Otherwise, this must be toggled with a command."
         },
-        "package-json-upgrade.showOverviewRulerColor": {
+        "pubspec-yaml-upgrade.showOverviewRulerColor": {
           "type": "boolean",
           "default": true,
           "description": "Show color indicators on the scrollbar for available updates."
         },
-        "package-json-upgrade.skipNpmConfig": {
+        "pubspec-yaml-upgrade.skipNpmConfig": {
           "type": "boolean",
           "default": false,
           "description": "Skip reading your npm configuration. Check this to skip using configuration such as proxies and caching that might be defined in your npm configuration. Try this out if the extension appears to not be working."
         },
-        "package-json-upgrade.majorUpgradeColorOverwrite": {
+        "pubspec-yaml-upgrade.majorUpgradeColorOverwrite": {
           "type": "string",
           "default": "",
           "description": "Specify a color (like #FF0000) to override the color of major upgrades. Leave empty for default color."
         },
-        "package-json-upgrade.minorUpgradeColorOverwrite": {
+        "pubspec-yaml-upgrade.minorUpgradeColorOverwrite": {
           "type": "string",
           "default": "",
           "description": "Specify a color (like #FFFF00) to override the color of minor upgrades. Leave empty for default color."
         },
-        "package-json-upgrade.patchUpgradeColorOverwrite": {
+        "pubspec-yaml-upgrade.patchUpgradeColorOverwrite": {
           "type": "string",
           "default": "",
           "description": "Specify a color (like #00FF00) to override the color of patch upgrades. Leave empty for default color."
         },
-        "package-json-upgrade.prereleaseUpgradeColorOverwrite": {
+        "pubspec-yaml-upgrade.prereleaseUpgradeColorOverwrite": {
           "type": "string",
           "default": "",
           "description": "Specify a color (like #00FF00) to override the color of prerelease upgrades. Leave empty for default color."
         },
-        "package-json-upgrade.decorationString": {
+        "pubspec-yaml-upgrade.decorationString": {
           "type": "string",
           "default": "\t-> %s",
           "description": "Customize update string. %s will be replaced by version, so 'Update: %s' will result in 'Update: 1.0.1'."
         },
-        "package-json-upgrade.ignorePatterns": {
+        "pubspec-yaml-upgrade.ignorePatterns": {
           "type": "array",
           "default": [],
           "description": "A list of regex pattern of packages to not show decoration string for. To ignore all material-ui packages the JSON should be [\"^(?=@material-ui).+$\"]"
         },
-        "package-json-upgrade.ignoreVersions": {
+        "pubspec-yaml-upgrade.ignoreVersions": {
           "type": "object",
           "default": {},
           "description": "Semver ranges of versions to ignore for specific packages. If you  want to ignore all @types/node versions 12 or greater the JSON should be {\"@types/node\": \">=12\"}. If you want to add several ignored semver ranges you can do {\"@types/node\": [\"=12.0.0\", \"=12.0.1\"]}."
         },
-        "package-json-upgrade.msUntilRowLoading": {
+        "pubspec-yaml-upgrade.msUntilRowLoading": {
           "type": "number",
           "default": 10000,
           "description": "Number of milliseconds until 'Loading...' is displayed on each dependency row that has not yet been loaded. 0 to disable, 1 to show immediately."
@@ -93,11 +93,11 @@
     },
     "commands": [
       {
-        "command": "package-json-upgrade.toggle-show",
+        "command": "pubspec-yaml-upgrade.toggle-show",
         "title": "Toggle showing package.json available updates"
       },
       {
-        "command": "package-json-upgrade.update-all",
+        "command": "pubspec-yaml-upgrade.update-all",
         "title": "Update all dependencies in the current package.json file"
       }
     ]
@@ -132,7 +132,8 @@
     "libnpmconfig": "1.2.1",
     "node-fetch": "2.7.0",
     "npm-registry-fetch": "14.0.5",
-    "semver": "7.6.3"
+    "semver": "7.6.3",
+    "yaml": "^2.6.0"
   },
   "devDependencies": {
     "@jest/globals": "29.7.0",
@@ -144,9 +145,9 @@
     "@types/semver": "7.5.8",
     "@types/vscode": "1.87.0",
     "@typescript-eslint/eslint-plugin": "5.62.0",
-    "@vscode/vsce": "2.31.1",
     "@vscode/test-cli": "0.0.10",
     "@vscode/test-electron": "2.4.1",
+    "@vscode/vsce": "2.31.1",
     "cross-env": "7.0.3",
     "eslint": "8.57.0",
     "eslint-config-prettier": "9.1.0",

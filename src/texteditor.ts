@@ -2,10 +2,11 @@ import * as vscode from 'vscode'
 import { decorateDiscreet, getDecoratorForUpdate, getUpdateDescription } from './decorations'
 import { getIgnorePattern, isDependencyIgnored } from './ignorePattern'
 import { getCachedNpmData, getPossibleUpgrades, refreshPackageJsonData } from './npm'
-import { DependencyGroups, getDependencyInformation, isPackageJson } from './packageJson'
+import { DependencyGroups } from './packageJson'
 import { AsyncState } from './types'
 import { TextEditorDecorationType } from 'vscode'
 import { getConfig } from './config'
+import { getDependencyInformation, isPubspecYaml } from './pubspecYaml'
 
 interface DecorationWrapper {
   line: number
@@ -29,7 +30,7 @@ export const handleFileDecoration = (document: vscode.TextDocument) => {
     return
   }
 
-  if (!isPackageJson(document)) {
+  if (!isPubspecYaml(document)) {
     return
   }
 

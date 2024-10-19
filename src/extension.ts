@@ -5,7 +5,7 @@ import { clearDecorations, handleFileDecoration } from './texteditor'
 import { UpdateAction } from './updateAction'
 import { updateAll } from './updateAll'
 
-export const OPEN_URL_COMMAND = 'package-json-upgrade.open-url-command'
+export const OPEN_URL_COMMAND = 'pubspec-yaml-upgrade.open-url-command'
 
 export function activate(context: vscode.ExtensionContext) {
   fixConfig()
@@ -13,7 +13,7 @@ export function activate(context: vscode.ExtensionContext) {
   let showDecorations = getConfig().showUpdatesAtStart
 
   const onConfigChange = vscode.workspace.onDidChangeConfiguration((e) => {
-    if (e.affectsConfiguration('package-json-upgrade')) {
+    if (e.affectsConfiguration('pubspec-yaml-upgrade')) {
       fixConfig()
       cleanNpmCache()
       clearDecorations()
@@ -61,7 +61,7 @@ export function activate(context: vscode.ExtensionContext) {
   // vscode.window.onDidChangeVisibleTextEditors((e: vscode.TextEditor[]) => {})
 
   const toggleShowCommand = vscode.commands.registerCommand(
-    'package-json-upgrade.toggle-show',
+    'pubspec-yaml-upgrade.toggle-show',
     () => {
       showDecorations = !showDecorations
       checkCurrentFiles(showDecorations)
@@ -69,7 +69,7 @@ export function activate(context: vscode.ExtensionContext) {
   )
 
   const updateAllCommand = vscode.commands.registerCommand(
-    'package-json-upgrade.update-all',
+    'pubspec-yaml-upgrade.update-all',
     () => {
       updateAll(vscode.window.activeTextEditor)
     },
@@ -119,7 +119,7 @@ export function deactivate() {
 }
 
 const fixConfig = () => {
-  const workspaceConfig = vscode.workspace.getConfiguration('package-json-upgrade')
+  const workspaceConfig = vscode.workspace.getConfiguration('pubspec-yaml-upgrade')
   const config: Config = {
     showUpdatesAtStart: workspaceConfig.get<boolean>('showUpdatesAtStart') === true,
     showOverviewRulerColor: workspaceConfig.get<boolean>('showOverviewRulerColor') === true,
